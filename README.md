@@ -1,3 +1,353 @@
+<p align="center">
+  <h1 align="center">👕 TshirtShop</h1>
+</p>
+
+<p align="center">
+Site e-commerce développé avec Laravel 12 + Vue.js 3
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/badge/Laravel-12-red">
+<img src="https://img.shields.io/badge/Vue.js-3-green">
+<img src="https://img.shields.io/badge/PHP-8-blue">
+<img src="https://img.shields.io/badge/MySQL-Database-orange">
+</p>
+
+---
+
+# 📖 À propos du projet
+
+TshirtShop est un projet e-commerce permettant :
+
+- gestion des produits
+- gestion des catégories
+- authentification administrateur
+- dashboard administrateur
+- gestion des commandes
+- gestion des utilisateurs
+- gestion du stock
+- statistiques financières
+
+Le projet utilise Laravel comme backend API et Vue.js comme frontend dynamique.
+
+---
+
+# 🚀 Technologies utilisées
+
+## Backend
+
+- Laravel 12
+- PHP 8+
+- MySQL / MariaDB
+
+## Frontend
+
+- Vue.js 3
+- Axios
+- Vite
+
+---
+
+# 📦 Installation du projet
+
+## 1. Cloner le projet
+
+```bash
+git clone https://github.com/VOTRE-LIEN-GITHUB.git
+```
+
+Puis :
+
+```bash
+cd t-shirt-website
+```
+
+---
+
+# ⚙️ Installer les dépendances
+
+## Laravel
+
+```bash
+composer install
+```
+
+## Vue.js
+
+```bash
+npm install
+```
+
+---
+
+# 🗄️ Configuration de la base de données
+
+Créer une base MySQL :
+
+```sql
+CREATE DATABASE tshirt_shop;
+```
+
+---
+
+# 🔑 Configuration du fichier .env
+
+Copier :
+
+```bash
+cp .env.example .env
+```
+
+Modifier :
+
+```env
+DB_DATABASE=tshirt_shop
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+---
+
+# 🔥 Générer la clé Laravel
+
+```bash
+php artisan key:generate
+```
+
+---
+
+# 📂 Créer les tables
+
+```bash
+php artisan migrate
+```
+
+---
+
+# 👤 Créer le compte administrateur
+
+Ouvrir Tinker :
+
+```bash
+php artisan tinker
+```
+
+Puis :
+
+```php
+\App\Models\User::create([
+    'name' => 'admin',
+    'email' => 'admin@test.com',
+    'password' => bcrypt('123456')
+]);
+```
+
+Quitter :
+
+```php
+exit
+```
+
+---
+
+# ▶️ Lancer le projet
+
+## Compiler Vue.js
+
+```bash
+npm run build
+```
+
+## Lancer Laravel
+
+```bash
+php artisan serve
+```
+
+---
+
+# 🌐 Accès au site
+
+## Site principal
+
+```txt
+http://127.0.0.1:8000
+```
+
+## Dashboard administrateur
+
+```txt
+http://127.0.0.1:8000/admin
+```
+
+---
+
+# 🔐 Identifiants administrateur
+
+Email :
+
+```txt
+admin@test.com
+```
+
+Mot de passe :
+
+```txt
+123456
+```
+
+---
+
+# 📁 Structure du projet
+
+## Backend Laravel
+
+```txt
+app/
+routes/
+database/
+config/
+```
+
+## Frontend Vue.js
+
+```txt
+resources/js/components/
+```
+
+### Composants principaux
+
+- Home.vue
+- Admin.vue
+- login.vue
+
+---
+
+# 📡 API disponibles
+
+## Produits
+
+```txt
+GET    /api/products
+POST   /api/products
+PUT    /api/products/{id}
+DELETE /api/products/{id}
+```
+
+---
+
+## Catégories
+
+```txt
+GET    /api/categories
+POST   /api/categories
+DELETE /api/categories/{id}
+```
+
+---
+
+## Authentification
+
+```txt
+POST /api/login
+```
+
+---
+
+# 👨‍💻 Fonctionnalités administrateur
+
+- Ajouter produit
+- Modifier produit
+- Supprimer produit
+- Ajouter catégorie
+- Supprimer catégorie
+- Gestion du stock
+- Gestion des commandes
+- Gestion des utilisateurs
+- Dashboard administrateur
+- Statistiques financières
+
+---
+
+# 🛠️ Commandes importantes
+
+## Voir les routes Laravel
+
+```bash
+php artisan route:list
+```
+
+---
+
+## Nettoyer le cache
+
+```bash
+php artisan optimize:clear
+```
+
+---
+
+## Recompiler Vue.js
+
+```bash
+npm run build
+```
+
+---
+
+# ⚠️ Important
+
+Après chaque modification Vue.js :
+
+1. Sauvegarder les fichiers
+2. Exécuter :
+
+```bash
+npm run build
+```
+
+3. Rafraîchir le navigateur
+
+---
+
+# 👥 Collaboration GitHub
+
+## Récupérer les modifications
+
+```bash
+git pull
+```
+
+---
+
+## Envoyer les modifications
+
+```bash
+git add .
+git commit -m "message"
+git push
+```
+
+---
+
+# 📚 Auteur
+
+Projet réalisé dans le cadre du cours de développement web.
+
+👕 TshirtShop © 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
