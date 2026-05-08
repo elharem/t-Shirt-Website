@@ -53,16 +53,8 @@ Le projet utilise Laravel comme backend API et Vue.js comme frontend dynamique.
 ## 1. Cloner le projet
 
 ```bash
-git clone https://github.com/VOTRE-LIEN-GITHUB.git
+git clone https://github.com/elharem/t-Shirt-Website
 ```
-
-Puis :
-
-```bash
-cd t-shirt-website
-```
-
----
 
 # ⚙️ Installer les dépendances
 
@@ -105,6 +97,8 @@ DB_DATABASE=tshirt_shop
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+<img width="950" height="687" alt="image" src="https://github.com/user-attachments/assets/3e4267d1-b01a-42c9-aa54-8b5a06e43076" />
+
 
 ---
 
@@ -295,46 +289,8 @@ npm run build
 
 ---
 
-# ⚠️ Important
 
-Après chaque modification Vue.js :
 
-1. Sauvegarder les fichiers
-2. Exécuter :
-
-```bash
-npm run build
-```
-
-3. Rafraîchir le navigateur
-
----
-
-# 👥 Collaboration GitHub
-
-## Récupérer les modifications
-
-```bash
-git pull
-```
-
----
-
-## Envoyer les modifications
-
-```bash
-git add .
-git commit -m "message"
-git push
-```
-
----
-
-# 📚 Auteur
-
-Projet réalisé dans le cadre du cours de développement web.
-
-👕 TshirtShop © 2026
 
 
 
