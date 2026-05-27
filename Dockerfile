@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     npm \
     nodejs
 
-RUN docker-php-ext-install zip pdo pdo_sqlite
+RUN docker-php-ext-install zip pdo pdo_sqlite pdo_mysql
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
