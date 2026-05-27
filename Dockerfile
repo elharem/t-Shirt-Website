@@ -6,10 +6,12 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     zip \
+    sqlite3 \
+    libsqlite3-dev \
     npm \
     nodejs
 
-RUN docker-php-ext-install zip
+RUN docker-php-ext-install zip pdo pdo_sqlite
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
@@ -17,9 +19,19 @@ WORKDIR /app
 
 COPY . .
 
+RUN cp .env.example .env
+
 RUN composer install
 RUN npm install
 RUN npm run build
+
+RUN php artisan key:generate
+RUN php artisan config:clear
+RUN php artisan cache:clear
+RUN php artisan route:clear
+RUN php artisan view:clear
+
+RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 10000
 
