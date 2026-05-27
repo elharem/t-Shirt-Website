@@ -1,0 +1,55 @@
+@import url('https://fonts.bunny.net/css?family=figtree:400,500,600,700|bebas-neue:400');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply bg-cream text-ink antialiased;
+        font-family: 'Figtree', sans-serif;
+    }
+    h1, h2, h3, h4 {
+        font-family: 'Bebas Neue', Impact, sans-serif;
+        letter-spacing: 0.02em;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 px-6 py-3 font-semibold uppercase tracking-wide transition-all duration-200;
+    }
+    .btn-primary {
+        @apply btn bg-ink text-cream hover:bg-accent;
+    }
+    .btn-outline {
+        @apply btn border-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-cream;
+    }
+    .btn-danger {
+        @apply btn bg-red-600 text-white hover:bg-red-700;
+    }
+    .input {
+        @apply w-full border border-ink/20 bg-white px-4 py-2.5 text-ink focus:border-ink focus:ring-0;
+    }
+    .card {
+        @apply bg-white border border-ink/10 transition-all duration-200 hover:border-ink;
+    }
+    .alert {
+        @apply px-4 py-3 mb-4 border-l-4 font-medium;
+    }
+    .alert-success {
+        @apply alert bg-green-50 border-green-600 text-green-800;
+    }
+    .alert-error {
+        @apply alert bg-red-50 border-red-600 text-red-800;
+    }
+}
+
+/* Marquee animation */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.marquee-track {
+    animation: marquee 30s linear infinite;
+}
