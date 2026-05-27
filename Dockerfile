@@ -20,8 +20,8 @@ WORKDIR /app
 COPY . .
 
 RUN composer install
-RUN npm install
-RUN npm run build
+RUN npm install && npm run build
+RUN ls -la public/build/assets
 
 RUN chmod -R 777 storage bootstrap/cache
 
