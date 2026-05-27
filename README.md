@@ -53,11 +53,8 @@ git --version
 ### 1. Cloner le dépôt
 
 ```bash
-git clone https://github.com/TON_USERNAME/tshirt-store.git
-cd tshirt-store
+git clone https://github.com/elharem/t-Shirt-Website.git
 ```
-
-> Remplace `TON_USERNAME` par ton nom d'utilisateur GitHub.
 
 ---
 
@@ -94,22 +91,72 @@ Crée une base de données MySQL :
 CREATE DATABASE tshirt_store CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 ```
 
-Puis ouvre le fichier `.env` et modifie ces lignes :
+Puis ouvre le fichier `.env`  :
 
-```env
+APP_NAME="T-Shirt Store"
+APP_ENV=local
+APP_KEY=base64:HVSiVBohtbYCyoi6xsEU5+qrx5Qro1NfLoZ2g6xcTqU=
+APP_DEBUG=true
+APP_URL=http://localhost:8000
+
+APP_LOCALE=fr
+APP_FALLBACK_LOCALE=en
+APP_FAKER_LOCALE=fr_FR
+
+APP_MAINTENANCE_DRIVER=file
+APP_MAINTENANCE_STORE=database
+
+BCRYPT_ROUNDS=12
+
+LOG_CHANNEL=stack
+LOG_STACK=single
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=tshirt_shop
+DB_DATABASE=tshirt_store
 DB_USERNAME=root
 DB_PASSWORD=
-```
+
+SESSION_DRIVER=database
+SESSION_LIFETIME=120
+SESSION_ENCRYPT=false
+SESSION_PATH=/
+SESSION_DOMAIN=null
+
+BROADCAST_CONNECTION=log
+FILESYSTEM_DISK=public
+QUEUE_CONNECTION=database
+
+CACHE_STORE=database
+CACHE_PREFIX=
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_CLIENT=phpredis
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=log
+MAIL_HOST=127.0.0.1
+MAIL_PORT=2525
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS="hello@tshirt-store.test"
+MAIL_FROM_NAME="${APP_NAME}"
+
+VITE_APP_NAME="${APP_NAME}"
+
+
+
+
 
 ---
 
-
-
----
 
 ### 7. Lancer les migrations et les seeders
 
@@ -172,16 +219,6 @@ Après le seed, ces comptes sont prêts à utiliser :
 
 ---
 
-## 💳 Tester le paiement Stripe
-
-Sur la page de checkout, utilise cette carte de test :
-
-| Champ | Valeur |
-|-------|--------|
-| Numéro | `4242 4242 4242 4242` |
-| Date d'expiration | N'importe quelle date future (ex: `12/30`) |
-| CVC | N'importe quel code 3 chiffres (ex: `123`) |
-| Code postal | N'importe quel code (ex: `1000`) |
 
 ---
 
@@ -273,123 +310,3 @@ tshirt-store/
 
 ---
 
-## 🐛 Résolution des problèmes courants
-
-### ❌ `No application encryption key has been specified`
-
-```bash
-php artisan key:generate
-```
-
-### ❌ Erreur lors de `php artisan migrate`
-
-Vérifie que :
-1. La base de données `tshirt_store` existe bien dans MySQL
-2. Les credentials dans `.env` sont corrects (username, password)
-3. MySQL est bien démarré
-
-### ❌ Page blanche ou erreur 500
-
-```bash
-chmod -R 775 storage bootstrap/cache
-php artisan config:clear
-php artisan cache:clear
-```
-
-Vérifie aussi les logs : `storage/logs/laravel.log`
-
-### ❌ Les assets (CSS/JS) ne chargent pas
-
-Assure-toi que `npm run dev` tourne dans un terminal parallèle. Si tu es en production :
-
-```bash
-npm run build
-```
-
-### ❌ Les images uploadées n'apparaissent pas
-
-```bash
-php artisan storage:link
-```
-
-### ❌ Stripe retourne une erreur
-
-1. Vérifie que tes clés dans `.env` commencent bien par `pk_test_` et `sk_test_`
-2. Relance `php artisan config:clear` après modification du `.env`
-3. Vérifie que ton APP_URL correspond bien à l'URL utilisée (ex: `http://localhost:8000`)
-
----
-
-## 🔄 Remettre la base à zéro
-
-Pour recommencer avec des données fraîches :
-
-```bash
-php artisan migrate:fresh --seed
-```
-
-⚠️ **Attention** : cette commande supprime toutes les données existantes.
-
----
-
-## 📦 Commande tout-en-un
-
-Une fois le projet cloné et `.env` configuré, tu peux tout enchaîner :
-
-```bash
-composer install && \
-npm install && \
-php artisan key:generate && \
-php artisan migrate --seed && \
-php artisan storage:link && \
-npm run build && \
-php artisan serve
-```
-
----
-
-## 📄 Documentation
-
-La documentation complète se trouve dans le dossier `docs/` :
-
-| Fichier | Description |
-|---------|-------------|
-| `docs/DOCUMENTATION_TECHNIQUE.md` | Architecture, modèle de données, sécurité, déploiement |
-| `docs/MANUEL_UTILISATEUR.md` | Guide d'utilisation client + admin |
-
----
-
-## ✅ User stories couvertes
-
-| ID | Description | Statut |
-|----|-------------|--------|
-| US1 | Voir les catégories sur l'accueil | ✅ |
-| US2 | Sélectionner une catégorie | ✅ |
-| US3 | Voir le détail d'un produit | ✅ |
-| US4 | Se connecter | ✅ |
-| US5 | S'inscrire | ✅ |
-| US6 | Modifier ses infos personnelles | ✅ |
-| US7 | Se déconnecter | ✅ |
-| US8 | Voir son panier | ✅ |
-| US9 | Modifier le panier | ✅ |
-| US10 | Payer (Stripe) | ✅ |
-| US11 | Choisir un transporteur | ✅ |
-| US12 | Gérer les produits (CRUD) | ✅ |
-| US13 | Gérer les commandes | ✅ |
-| US14 | Voir les statistiques | ✅ |
-| US15 | Optimisation SEO | ✅ |
-| US16 | Partage réseaux sociaux | ✅ |
-
----
-
-## 👤 Auteur
-
-**LAGHIM**  
-Bachelier en Informatique de Gestion — Full-Stack Web Development  
-EAFC Bruxelles — 2025/2026
-
----
-
-*Projet réalisé dans le cadre du Travail de Fin d'Études (TFE)*
-
-# t-Shirt-Website
