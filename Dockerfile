@@ -34,3 +34,5 @@ EXPOSE 10000
 
 # Lancement — migrations incluses au démarrage
 CMD php artisan migrate --force --seed && php artisan storage:link && php artisan serve --host=0.0.0.0 --port=10000
+
+RUN docker-php-ext-install pdo_mysql mbstring zip exif pcntl bcmath gd pdo_pgsql
