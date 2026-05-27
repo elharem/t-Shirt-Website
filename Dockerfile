@@ -19,4 +19,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 10000
 
-CMD ["/bin/sh", "-c", "php artisan migrate --force && php artisan storage:link && php -S 0.0.0.0:10000 -t public"]
+CMD ["/bin/sh", "-c", "echo 'Starting migration...' && php artisan migrate --force && echo 'Migration done' && php artisan storage:link && echo 'Storage linked' && ls -la public/ && echo 'Starting PHP server on port 10000' && exec php -S 0.0.0.0:10000 -t public && echo 'Server started'"]
