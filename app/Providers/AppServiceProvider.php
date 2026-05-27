@@ -14,18 +14,15 @@ class AppServiceProvider extends ServiceProvider
     }
 
     public function boot(): void
-    {
-        // Partage du nombre d'articles du panier dans toutes les vues
-        View::composer('*', function ($view) {
-            $count = 0;
-            if (auth()->check()) {
-                $cart = Cart::where('user_id', auth()->id())->with('items')->first();
-                $count = $cart ? $cart->items->sum('quantity') : 0;
-            } else {
-                $cart = Cart::where('session_id', session()->getId())->with('items')->first();
-                $count = $cart ? $cart->items->sum('quantity') : 0;
-            }
-            $view->with('cartCount', $count);
-        });
+{
+    // Force HTTPS en production
+    if (config('app.env') === 'production') {
+        \Illuminate\Support\Facades\URL::forceScheme('https');
     }
+
+    // Le reste de ton code existant...
+    \Illuminate\Support\Facades\View::composer('*', function ($view) {
+        // ... ton code du cartCount
+    });
+}
 }
