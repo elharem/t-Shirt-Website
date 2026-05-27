@@ -19,20 +19,12 @@ WORKDIR /app
 
 COPY . .
 
-RUN cp .env.example .env
-
 RUN composer install
 RUN npm install
 RUN npm run build
-
-RUN php artisan key:generate
-RUN php artisan config:clear
-RUN php artisan cache:clear
-RUN php artisan route:clear
-RUN php artisan view:clear
 
 RUN chmod -R 777 storage bootstrap/cache
 
 EXPOSE 10000
 
-CMD php artisan serve --host=0.0.0.0 --port=10000
+CMD php artisan config:clear && php artisan serve --host=0.0.0.0 --port=10000
