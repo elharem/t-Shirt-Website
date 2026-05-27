@@ -153,11 +153,6 @@ VITE_APP_NAME="${APP_NAME}"
 
 
 
-
-
----
-
-
 ### 7. Lancer les migrations et les seeders
 
 ```bash
