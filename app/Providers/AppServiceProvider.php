@@ -15,23 +15,25 @@ class AppServiceProvider extends ServiceProvider
     }
 
     public function boot(): void
-    {
-        // Force HTTPS en production
-        if (config('app.env') === 'production') {
-            URL::forceScheme('https');
-        }
-
-        // Partage du nombre d'articles du panier dans toutes les vues
-        View::composer('*', function ($view) {
-            $count = 0;
-            if (auth()->check()) {
-                $cart = Cart::where('user_id', auth()->id())->with('items')->first();
-                $count = $cart ? $cart->items->sum('quantity') : 0;
-            } else {
-                $cart = Cart::where('session_id', session()->getId())->with('items')->first();
-                $count = $cart ? $cart->items->sum('quantity') : 0;
-            }
-            $view->with('cartCount', $count);
-        });
+{
+    if (config('app.env') === 'production') {
+        \Illuminate\Support\Facades\URL::forceScheme('https');
     }
+
+    // Fix Vite manifest path pour Vite 5
+    \Illuminate\Support\Facades\Vite::useManifestFilename('.vite/manifest.json');
+
+    // Panier dans toutes les vues
+    \Illuminate\Support\Facades\View::composer('*', function ($view) {
+        $count = 0;
+        if (auth()->check()) {
+            $cart = \App\Models\Cart::where('user_id', auth()->id())->with('items')->first();
+            $count = $cart ? $cart->items->sum('quantity') : 0;
+        } else {
+            $cart = \App\Models\Cart::where('session_id', session()->getId())->with('items')->first();
+            $count = $cart ? $cart->items->sum('quantity') : 0;
+        }
+        $view->with('cartCount', $count);
+    });
+}
 }
