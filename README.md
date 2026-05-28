@@ -200,6 +200,8 @@ php artisan serve
 ```
 
 Le site est maintenant accessible sur **[http://localhost:8000](http://localhost:8000)** 🎉
+ou 
+https://t-shirt-website-production.up.railway.app/
 
 ---
 
@@ -209,7 +211,7 @@ Après le seed, ces comptes sont prêts à utiliser :
 
 | Rôle | Email | Mot de passe |
 |------|-------|--------------|
-| 👑 Admin | `admin@tshirt-store.test` | `password` |
+| 👑 Admin | `admin@tshirt-store.com` | `password` |
 | 👤 Client | `client@tshirt-store.test` | `password` |
 
 ---
