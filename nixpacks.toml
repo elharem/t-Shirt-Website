@@ -2,7 +2,7 @@
 cmds = ["composer install --no-dev --optimize-autoloader", "npm ci"]
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = ["npm run build", "php artisan migrate --force", "php artisan storage:link --force", "php artisan db:seed --force"]
 
 [start]
 cmd = "exec php -S 0.0.0.0:$PORT -t public"
