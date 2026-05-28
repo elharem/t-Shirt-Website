@@ -19,4 +19,4 @@ RUN chmod -R 775 storage bootstrap/cache
 
 EXPOSE 10000
 
-CMD ["/bin/sh", "-c", "php artisan migrate --force && php artisan storage:link --force && exec php -S 0.0.0.0:10000 -t public"]
+CMD ["/bin/sh", "-c", "exec php -S 0.0.0.0:10000 -t public"]
