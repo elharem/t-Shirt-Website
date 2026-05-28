@@ -4,7 +4,7 @@
 }
 
 :8080 {
-    root * public
+    root * /app/public
     php_server
     encode gzip
     file_server
