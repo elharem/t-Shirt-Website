@@ -25,10 +25,17 @@ class ProductController extends Controller
     {
         $data = $this->validateData($request);
         $data = $this->processArrays($data);
+
         if ($request->hasFile('image_file')) {
             $data['image'] = $request->file('image_file')->store('products', 'public');
         }
+
+        $data['meta_title']       = $request->meta_title;
+        $data['meta_description'] = $request->meta_description;
+        $data['meta_keywords']    = $request->meta_keywords;
+
         Product::create($data);
+
         return redirect()->route('admin.products.index')->with('success', 'Produit créé.');
     }
 
@@ -42,10 +49,17 @@ class ProductController extends Controller
     {
         $data = $this->validateData($request);
         $data = $this->processArrays($data);
+
         if ($request->hasFile('image_file')) {
             $data['image'] = $request->file('image_file')->store('products', 'public');
         }
+
+        $data['meta_title']       = $request->meta_title;
+        $data['meta_description'] = $request->meta_description;
+        $data['meta_keywords']    = $request->meta_keywords;
+
         $product->update($data);
+
         return redirect()->route('admin.products.index')->with('success', 'Produit mis à jour.');
     }
 
@@ -58,16 +72,19 @@ class ProductController extends Controller
     protected function validateData(Request $request): array
     {
         return $request->validate([
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-            'image' => 'nullable|string',
-            'image_file' => 'nullable|image|max:2048',
-            'sizes_csv' => 'nullable|string',
-            'colors_csv' => 'nullable|string',
-            'is_active' => 'nullable|boolean',
+            'category_id'      => 'required|exists:categories,id',
+            'name'             => 'required|string|max:255',
+            'description'      => 'required|string',
+            'price'            => 'required|numeric|min:0',
+            'stock'            => 'required|integer|min:0',
+            'image'            => 'nullable|string',
+            'image_file'       => 'nullable|image|max:2048',
+            'sizes_csv'        => 'nullable|string',
+            'colors_csv'       => 'nullable|string',
+            'is_active'        => 'nullable|boolean',
+            'meta_title'       => 'nullable|string|max:70',
+            'meta_description' => 'nullable|string|max:160',
+            'meta_keywords'    => 'nullable|string|max:255',
         ]);
     }
 

@@ -4,6 +4,11 @@
 @section('og_title', $product->name)
 @section('og_description', Str::limit($product->description, 150))
 @section('og_image', $product->image_url)
+@section('title', $product->meta_title ?: $product->name . ' — TEE/SHOP')
+@section('description', $product->meta_description ?: Str::limit($product->description, 155))
+@section('og_title', $product->meta_title ?: $product->name)
+@section('og_description', $product->meta_description ?: Str::limit($product->description, 155))
+@section('og_image', $product->image_url)
 
 @section('content')
 <section class="container mx-auto px-4 py-10">

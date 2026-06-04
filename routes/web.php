@@ -98,4 +98,5 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('categories', AdminCategory::class)->only(['index', 'store', 'update', 'destroy']);
 
     Route::get('/seo', [AdminSeo::class, 'index'])->name('seo');
+Route::post('/seo', [AdminSeo::class, 'update'])->name('seo.update');
 });
