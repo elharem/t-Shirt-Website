@@ -5,7 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Admin — @yield('title', 'Dashboard')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    {{-- Assets --}}
+    @php
+        $manifest = json_decode(file_get_contents(public_path('build/.vite/manifest.json')), true);
+    @endphp
+    <link rel="stylesheet" href="{{ asset('build/' . $manifest['resources/css/app.css']['file']) }}">
+    <script src="{{ asset('build/' . $manifest['resources/js/app.js']['file']) }}" defer></script>
+
     @stack('head')
 </head>
 <body class="bg-gray-50 min-h-screen flex">
@@ -84,8 +91,6 @@
             <div class="pt-3 pb-1">
                 <p class="text-xs uppercase tracking-widest text-white/20 px-3 mb-2">Marketing</p>
             </div>
-
-            
 
             <a href="{{ route('admin.seo') }}"
                class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-all {{ request()->routeIs('admin.seo*') ? 'bg-accent text-white font-medium' : 'text-white/60 hover:bg-white/8 hover:text-white' }}">
