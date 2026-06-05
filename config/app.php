@@ -15,6 +15,7 @@ return [
         ...array_filter(
             explode(',', env('APP_PREVIOUS_KEYS', ''))
         ),
+    'google_analytics' => env('GOOGLE_ANALYTICS_ID'),
     ],
     'maintenance' => [
         'driver' => env('APP_MAINTENANCE_DRIVER', 'file'),
