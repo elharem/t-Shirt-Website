@@ -25,20 +25,7 @@
 </div>
 
 <div class="grid lg:grid-cols-3 gap-6 mb-8">
-    {{-- Graphique CA --}}
-    <div class="lg:col-span-2 card p-5">
-        <h2 class="text-xl font-display mb-4">Ventes (30 derniers jours)</h2>
-        <canvas id="salesChart" height="100"></canvas>
-    </div>
-
-    {{-- Statut commandes --}}
-    <div class="card p-5">
-        <h2 class="text-xl font-display mb-4">Commandes par statut</h2>
-        <canvas id="statusChart"></canvas>
-    </div>
-</div>
-
-<div class="grid lg:grid-cols-2 gap-6">
+   
     {{-- Top produits --}}
     <div class="card p-5">
         <h2 class="text-xl font-display mb-4">Top 5 produits</h2>
