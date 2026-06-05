@@ -7,15 +7,7 @@
     <title>@yield('title', config('app.name'))</title>
     <meta name="description" content="@yield('description', 'Boutique de t-shirts en ligne — designs uniques, qualité premium, livraison en Belgique.')">
 
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VB66GPBJ07"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-VB66GPBJ07');
-</script>
+   
 
     {{-- Open Graph --}}
     <meta property="og:title" content="@yield('og_title', config('app.name'))">
