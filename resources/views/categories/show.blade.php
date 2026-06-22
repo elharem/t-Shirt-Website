@@ -21,6 +21,27 @@
             <a href="{{ route('products.index') }}" class="btn-outline">Voir tous les produits</a>
         </div>
     @else
+        {{-- Filtre de tri --}}
+        <div class="flex items-center justify-end mb-6">
+            <form method="GET" action="{{ route('categories.show', $category) }}">
+                <div class="flex items-center gap-2">
+                    <label for="sort" class="text-xs uppercase tracking-widest text-ink/50 whitespace-nowrap">
+                        Trier par
+                    </label>
+                    <select name="sort" id="sort"
+                        onchange="this.form.submit()"
+                        class="border border-ink/20 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:border-accent transition cursor-pointer">
+                        <option value="newest"     {{ $sort === 'newest'     ? 'selected' : '' }}>Nouveautés</option>
+                        <option value="price_asc"  {{ $sort === 'price_asc'  ? 'selected' : '' }}>Prix croissant</option>
+                        <option value="price_desc" {{ $sort === 'price_desc' ? 'selected' : '' }}>Prix décroissant</option>
+                        <option value="name_asc"   {{ $sort === 'name_asc'   ? 'selected' : '' }}>Nom A → Z</option>
+                        <option value="name_desc"  {{ $sort === 'name_desc'  ? 'selected' : '' }}>Nom Z → A</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        {{-- Grille produits --}}
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             @foreach($products as $product)
                 @include('partials.product-card', ['product' => $product])
